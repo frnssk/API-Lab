@@ -1,13 +1,10 @@
 
-        
-        // ----------------------------------------
         // Particle
-        // ----------------------------------------
-
         function Particle( x, y, radius ) {
             this.init( x, y, radius );
         }
 
+        //Create particle object to be called later
         Particle.prototype = {
 
             init: function( x, y, radius ) {
@@ -27,6 +24,7 @@
                 this.vy = 0.0;
             },
 
+            //Create 'move' function, setting the math for the particle movement
             move: function() {
 
                 this.x += this.vx;
@@ -52,16 +50,16 @@
             }
         };
 
-        // ----------------------------------------
         // Example
-        // ----------------------------------------
 
+        //Init particles and colors 
         var MAX_PARTICLES = 280;
         var COLOURS = [ '#69D2E7', '#A7DBD8', '#E0E4CC', '#F38630', '#FA6900', '#FF4E50', '#F9D423' ];
 
         var particles = [];
         var pool = [];
 
+        //Creating scetch object to HTML element
         var demo = Sketch.create({
             container: document.getElementById( 'container' ),
             retina: 'auto'
@@ -79,6 +77,7 @@
             }
         };
 
+        //Creating the particles
         demo.spawn = function( x, y ) {
             
             var particle, theta, force;
@@ -115,6 +114,7 @@
             }
         };
 
+        //Adding particles to canvas
         demo.draw = function() {
 
             demo.globalCompositeOperation  = 'lighter';
@@ -124,6 +124,7 @@
             }
         };
 
+        //Listens for move of the mouse
         demo.mousemove = function() {
 
             var particle, theta, force, touch, max, i, j, n;
