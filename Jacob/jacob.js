@@ -1,46 +1,26 @@
-var width = window.innerWidth;
-      var height = window.innerHeight;
+const {Scene, Sprite} = spritejs;
 
-      var stage = new Konva.Stage({
-        container: 'container',
-        width: width,
-        height: height
-      });
+const container = document.querySelector('#stage');
+const scene = new Scene({container, width: 3080, height: 800, mode: 'stickyTop'});
 
-      var layer = new Konva.Layer();
+const layer = scene.layer();
 
-      var rect1 = new Konva.Rect({
-        x: 20,
-        y: 20,
-        width: 100,
-        height: 50,
-        fill: 'green',
-        stroke: 'black',
-        strokeWidth: 4
-      });
-      // add the shape to the layer
-      layer.add(rect1);
+const robot = new Sprite('https://p5.ssl.qhimg.com/t01c33383c0e168c3c4.png');
 
-      var rect2 = new Konva.Rect({
-        x: 150,
-        y: 40,
-        width: 100,
-        height: 50,
-        fill: 'red',
-        shadowBlur: 10,
-        cornerRadius: 10
-      });
-      layer.add(rect2);
+robot.attr({
+  anchor: [0, 0.5],
+  pos: [0, 0],
+});
 
-      var rect3 = new Konva.Rect({
-        x: 50,
-        y: 120,
-        width: 100,
-        height: 100,
-        fill: 'blue',
-        cornerRadius: [0, 10, 20, 30]
-      });
-      layer.add(rect3);
+robot.animate([
+  {pos: [0, 0]},
+  {pos: [0, 300]},
+  {pos: [2700, 300]},
+  {pos: [2700, 0]},
+], {
+  duration: 5000,
+  iterations: Infinity,
+  direction: 'alternate',
+});
 
-      // add the layer to the stage
-      stage.add(layer);
+layer.append(robot);
