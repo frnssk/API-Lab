@@ -1,5 +1,4 @@
-
-
+//different settings as tools for us to alter the behaviour of the "lasher"
 var settings = {
     interactive: true,
     headRadius: 10,
