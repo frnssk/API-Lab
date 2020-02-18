@@ -170,23 +170,28 @@ Tentacle.prototype = {
 var demo = true;
 var ease = 0;
 var modified = false;
+
+//Sets the radius of the head, along with an array to hold the tentacles, and sets up the center.
 var radius = settings.headRadius;
 var tentacles = [];
 var center = { x:0, y:0 };
 
+//Creates the sketch, thus creating the canvas on which everything is being drawn.
 var sketch = Sketch.create({
 
     container: document.getElementById( 'container' ),
 
     setup: function() {
-
+        //finds the center of the screen
         center.x = this.width / 2;
         center.y = this.height / 2;
-
+        
+        //sets up a tentacle array
         var tentacle;
 
         for ( var i = 0; i < 100; i++ ) {
 
+            //adds a tentacle with properties to the array
             tentacle = new Tentacle({
                 length: random( 10, 20 ),
                 radius: random( 0.05, 1.0 ),
@@ -199,6 +204,8 @@ var sketch = Sketch.create({
         }
     },
 
+
+    //animates
     update: function() {
 
         var t, cx, cy, pulse;
@@ -206,11 +213,11 @@ var sketch = Sketch.create({
         t = this.millis * 0.001;
 
         if ( settings.pulse ) {
-
+            //checks settings again, this time for the pulse, checking if the head is to pulse or not
             pulse = pow( sin( t * PI ), 18 );
             radius = settings.headRadius * 0.5 + settings.headRadius * 0.5 * pulse;
         }
-
+            //checks if the hrad should follow the mouse or...
         if ( settings.interactive ) {
 
             ease += ( 0.7 - ease ) * 0.05;
@@ -219,7 +226,7 @@ var sketch = Sketch.create({
             center.y += ( this.mouse.y - center.y ) * ease;
 
         } else {
-
+            //...move around on it's own.
             t = this.millis;
             cx = this.width * 0.5;
             cy = this.height * 0.5;
