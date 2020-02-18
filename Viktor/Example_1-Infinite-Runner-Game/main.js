@@ -107,10 +107,16 @@ Player.prototype.update = function() {
     InfiniteRunner.platformManager.updateWhenLose();
   }
 
-  if((InfiniteRunner.keys.UP || InfiniteRunner.keys.SPACE || InfiniteRunner.keys.W || InfiniteRunner.dragging) && this.velocityY < -8){
+  if((InfiniteRunner.keys.UP || InfiniteRunner.keys.SPACE || InfiniteRunner.keys.W) && this.velocityY < -8){
     this.velocityY += -0.75;
-  }
 
+  }
+  if((InfiniteRunner.keys.RIGHT)){
+   
+  }
+  if((InfiniteRunner.keys.LEFT)){
+  
+  } 
 };
 
 Player.prototype.draw = function() {
@@ -250,20 +256,30 @@ InfiniteRunner.update = function() {
   this.player.update();
 
   switch(this.jumpCount){
-    case 10:
+    case 5:
       this.acelerationTweening = 1;
-      this.platformManager.maxDistanceBetween = 430;
+      this.platformManager.maxDistanceBetween = 420;
+      this.scoreColor = '#076C00';
+      break;
+    case 10:
+      this.acelerationTweening = 2;
+      this.platformManager.maxDistanceBetween = 500;
+      this.scoreColor = '#0300A9';
+      break;
+    case 15:
+      this.acelerationTweening = 3;
+      this.platformManager.maxDistanceBetween = 550;
+      this.scoreColor = '#9F8F00';
+      break;
+    case 20:
+      this.acelerationTweening = 4;
+      this.platformManager.maxDistanceBetween = 600;
       this.scoreColor = '#076C00';
       break;
     case 25:
-      this.acelerationTweening = 2;
-      this.platformManager.maxDistanceBetween = 530;
+      this.acelerationTweening = 5;
+      this.platformManager.maxDistanceBetween = 650;
       this.scoreColor = '#0300A9';
-      break;
-    case 40:
-      this.acelerationTweening = 3;
-      this.platformManager.maxDistanceBetween = 580;
-      this.scoreColor = '#9F8F00';
       break;
   }
 
@@ -308,7 +324,7 @@ InfiniteRunner.update = function() {
 
       } else {
 
-        if(this.dragging || this.keys.SPACE || this.keys.UP || this.keys.W){
+        if(this.keys.SPACE || this.keys.UP || this.keys.W){
           this.player.velocityY = this.player.jumpSize;
           this.jumpCount++;
           if(this.jumpCount > this.jumpCountRecord){

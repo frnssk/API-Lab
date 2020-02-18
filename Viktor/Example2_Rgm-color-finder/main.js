@@ -1,4 +1,4 @@
-Sketch.create({
+              Sketch.create({
     setup() {
       this.r = this.g = this.b = random(100, 200)
     },

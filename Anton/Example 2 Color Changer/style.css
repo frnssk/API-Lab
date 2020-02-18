@@ -1,0 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+html,
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+}
+
+p {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 28px;
+    position: absolute;
+    width: 100%;
+    color: #fff;
+}
