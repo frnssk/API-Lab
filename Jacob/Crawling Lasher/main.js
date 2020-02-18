@@ -5,13 +5,14 @@ var settings = {
     thickness: 5,
     tentacles: 50,
     friction: 1,
-    gravity: 5,
+    gravity: 0,
     colour: { r: 1, g: 1, b: 1 },
     length: 50,
     pulse: false,
     wind: 0
 };
 
+//Function that will draw a line through points that are defined within the function
 var utils = {
 
     curveThroughPoints: function( points, ctx ) {
@@ -40,13 +41,14 @@ var Node = function( x, y ) {
     
     this.x = this.ox = x || 0.0;
     this.y = this.oy = y || 0.0;
-
+   
     this.vx = 0.0;
     this.vy = 0.0;
 };
 
 var Tentacle = function( options ) {
 
+    //referring to the options that were set up earlier in the code
     this.length = options.length || 10;
     this.radius = options.radius || 10;
     this.spacing = options.spacing || 20;
@@ -62,6 +64,7 @@ var Tentacle = function( options ) {
     }
 };
 
+//adding a method the the tentacle object, 
 Tentacle.prototype = {
 
     move: function( x, y, instant ) {
