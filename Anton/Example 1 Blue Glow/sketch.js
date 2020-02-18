@@ -71,12 +71,15 @@ s.update = function() {
     hue = reverseHue ? hue - 1 : hue + 1;
 
 };
+s.mousedown = function() {
+    s.draw = function() {
+        for (var i in particles) {
+            particles[i].draw();
+            this.toggle();
+        }
+    };
+}
 
-s.draw = function() {
-    for (var i in particles) {
-        particles[i].draw();
-    }
-};
 
 s.mouseout = s.touchend = function() {
     s.mouse.x = null;

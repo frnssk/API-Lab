@@ -8,6 +8,7 @@ var hue = 0;
 
 function P() {}
 
+
 P.prototype = {
     constructor: P,
     init: function() {
@@ -21,8 +22,10 @@ P.prototype = {
         this.color = "hsla(" + hue + ", 100%, 50%, 1)";
         this.life = 0;
         this.maxLife = random(100);
+
     },
     draw: function() {
+
         s.globalCompositeOperation = "source-atop";
         s.strokeStyle = this.color;
         s.beginPath();
@@ -59,12 +62,28 @@ s.update = function() {
     s.fillRect(0, 0, s.width, s.height);
     hue += .3;
 };
+s.mousedown = function() {
+    if (s.mousedown) {
+        s.draw = function() {
 
-s.draw = function() {
-    for (var i in particles) {
-        particles[i].draw();
+            for (var i in particles) {
+                particles[i].draw();
+                s.click = function() {
+
+
+
+
+                }
+            }
+
+
+        }
+    } else {
+        this.toggle();
     }
+
 };
+
 
 s.mouseout = s.touchend = function() {
     s.mouse.x = null;
