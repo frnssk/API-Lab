@@ -75,8 +75,16 @@
 
   //draws the background then fires the function that draws a single dot, but in a for loop so that every dot is drawn
   ctx.draw = function() {
-    ctx.fillStyle = "#56667A";
-    ctx.fillRect(0, 0, ctx.width, ctx.height);
+  
+  // Made the background into a gradient
+   var grd = ctx.createLinearGradient(0 , 0, 0, 500);
+  grd.addColorStop(0, "#1D2229");
+  grd.addColorStop(1, "#56667A");
+
+// Fill with gradient
+ctx.fillStyle = grd;
+ctx.fillRect(0, 0, ctx.width, ctx.height);
+
     for (var i = 0; i < dots.length; i++) {
       dots[i].draw();
     }

@@ -46,6 +46,7 @@ var Node = function( x, y ) {
     this.vy = 0.0;
 };
 
+//takes the settings chosen earlier in the code and puts them to use.
 var Tentacle = function( options ) {
 
     //referring to the options that were set up earlier in the code
@@ -64,7 +65,7 @@ var Tentacle = function( options ) {
     }
 };
 
-//adding a method the the tentacle object, 
+//adding a method in the tentacle object, 
 Tentacle.prototype = {
 
     move: function( x, y, instant ) {
@@ -83,6 +84,7 @@ Tentacle.prototype = {
         }
     },
 
+    //update is done to animate 
     update: function() {
 
         var i, n, s, c, dx, dy, da, px, py, node, prev = this.nodes[0];
