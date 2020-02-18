@@ -1,0 +1,3 @@
+Start the Program by opening index.html in your browser of choice. 
+
+This is a simple program that will create an array of dots that are falling from the top of the screen to the bottom. In the program there are several settings that can be played with the alter the behaviour of the dots. To begin with the example was looking drastically different that it looks now, I tried to make it look like the dots are rain drops that are raining down from a cloud in the sky. 
