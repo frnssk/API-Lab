@@ -1,4 +1,4 @@
-var colors = ['#E3EB64', '#A7EBCA', '#FFFFFF', '#D8EBA7', '#868E80' ];
+var COLOURS = [ '#E3EB64', '#A7EBCA', '#FFFFFF', '#D8EBA7', '#868E80' ];
 var radius = 0;
 
 Sketch.create({
@@ -21,17 +21,27 @@ Sketch.create({
         if ( this.keys.C ) this.clear();
     },
 
+    /*
+    Mouse & touch events are merged, so handling touch events by default
+    and powering sketches using the touches array is recommended for easy
+    scalability. If you only need to handle the mouse / desktop browsers,
+    use the 0th touch element and you get wider device support for free.
+    */
+
+    //Creates basic function
     touchmove: function() {
 
-        for ( var i = this.touches.length - 1, touch; i >= 0; i--){
+        for ( var i = this.touches.length - 1, touch; i >= 0; i-- ) {
 
             touch = this.touches[i];
 
+            //sets the propeties for the line
             this.lineCap = 'round';
             this.lineJoin = 'round';
-            this.fillStyle = this.strokeStyle = colors[ i % colors.length ];
+            this.fillStyle = this.strokeStyle = COLOURS[ i % COLOURS.length ];
             this.lineWidth = radius;
 
+            //Calls functions so app reacts to mouse
             this.beginPath();
             this.moveTo( touch.ox, touch.oy );
             this.lineTo( touch.x, touch.y );
