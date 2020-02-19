@@ -10,11 +10,18 @@ document.getElementById("myBtn").addEventListener("mouseup", buttonFunction);
 /*var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");*/
 
-var InfiniteRunner = Sketch.create({
+var ctx = Sketch.create({
   fullscreen: false,
   width: 640,
   height: 360,
-  container: document.getElementById('container')
+  container: document.getElementById('container'),
+  draw: function() {
+		this.beginPath();
+		this.fillRect(100, 0, 100, 35 );
+		this.fillStyle = "#306955";
+  }
+  
+  
 });
 
 /*let button = {
@@ -64,19 +71,19 @@ Box.prototype.update = function() {
 
 
 Box.prototype.draw = function() {
-  InfiniteRunner.fillStyle = this.color;
-  InfiniteRunner.fillRect(this.x, this.y, this.width, this.height);
+  ctx.fillStyle = this.color;
+  ctx.fillRect(this.x, this.y, this.width, this.height);
 };
 
-InfiniteRunner.setup = function () {
+ctx.setup = function () {
   this.player = new Box({x: 100, y: 0, width: 100, height: 35});
 };
 
-InfiniteRunner.update = function() {
+ctx.update = function() {
   this.player.update();
 };
 
-InfiniteRunner.draw = function(){
+ctx.draw = function(){
  
 this.player.draw();
 }; 
