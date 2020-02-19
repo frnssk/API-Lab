@@ -3,10 +3,11 @@
 var sun = 0;
 var earth = 0;
 var moon = 0;
+var planet = 0;
 var s = 1;
 var s2 = 2;
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
   background(0);
 }
@@ -18,7 +19,7 @@ function draw() {
 
   // Draw the sun
   // Move to center
-  translate(200, 200);
+  translate(700, 400);
   fill("red");
   ellipse(0, 0, 120);
   fill("orangered");
@@ -62,4 +63,14 @@ function draw() {
   // Draw the moon
   fill("yellow");
   ellipse(330, 330, 20);
+
+  rotate(planet)
+  planet = planet + s2;
+
+  translate(400, 400);
+  fill("red");
+  ellipse(0, 0, 30, 50);
+  fill("black");
+  ellipse(0, 0, 20, 40);
+
 }
