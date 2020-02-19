@@ -68,18 +68,12 @@ s.mousedown = function() {
 
             for (var i in particles) {
                 particles[i].draw();
-                s.click = function() {
+                s.toggle();
 
-
-
-
-                }
             }
 
 
         }
-    } else {
-        this.toggle();
     }
 
 };
