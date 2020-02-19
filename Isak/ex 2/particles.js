@@ -53,7 +53,7 @@
         // Example
 
         //Init particles and colors 
-        var MAX_PARTICLES = 280;
+        var MAX_PARTICLES = 100;
         var COLOURS = [ '#69D2E7', '#A7DBD8', '#E0E4CC', '#F38630', '#FA6900', '#FF4E50', '#F9D423' ];
 
         var particles = [];
@@ -116,11 +116,14 @@
 
         //Adding particles to canvas
         demo.draw = function() {
-
             demo.globalCompositeOperation  = 'lighter';
 
             for ( var i = particles.length - 1; i >= 0; i-- ) {
                 particles[i].draw( demo );
+                demo.click = function() {
+                    this.toggle();
+                    this.clear();
+                }
             }
         };
 

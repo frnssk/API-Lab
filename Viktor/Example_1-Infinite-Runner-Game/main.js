@@ -308,7 +308,7 @@ InfiniteRunner.update = function() {
 
       } else {
 
-        if(this.dragging || this.keys.SPACE || this.keys.UP || this.keys.W){
+        if(this.keys.SPACE || this.keys.UP || this.keys.W){
           this.player.velocityY = this.player.jumpSize;
           this.jumpCount++;
           if(this.jumpCount > this.jumpCountRecord){
