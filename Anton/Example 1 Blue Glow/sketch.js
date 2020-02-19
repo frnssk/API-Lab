@@ -106,7 +106,7 @@ function resumeDraw() {
             particles.push(p)
         }, i * 30);
     }
-   
+
 }
 
 function stopDraw() {
@@ -116,5 +116,6 @@ function stopDraw() {
             var p = new P();
             p.init();
             particles.pop(p)
-        }, i * 30);}
+        }, i * 30);
+    }
 }
