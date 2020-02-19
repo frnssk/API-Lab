@@ -1,0 +1,28 @@
+body{
+    background-color: black;
+    color: green;
+    font-family: 'Courier New', Courier, monospace;
+    padding-left: 100px;
+    padding-top: 25px;
+}
+
+a:visited{
+    text-decoration: none;
+    color: green;
+}
+
+a:active{
+    text-decoration: none;
+    color: green;
+}
+
+a:hover{
+    text-decoration: none;
+    color: white;
+}
+
+a:link{
+    text-decoration: none;
+    color: green;
+}
+
