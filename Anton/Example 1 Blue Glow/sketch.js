@@ -4,8 +4,8 @@ var s = Sketch.create({
 var particles = [];
 var max = 0;
 var clearColor = "rgba(0,0,0,.2)";
-var hue = minHue = 190;
-var maxHue = 200;
+var hue = minHue = 1;
+var maxHue = 30;
 var reverseHue = false;
 
 function P() {}
@@ -13,13 +13,13 @@ function P() {}
 P.prototype = {
     constructor: P,
     init: function() {
-        this.r = random(8) + 3;
-        this.v = this.r / 7;
+        this.r = random(8) + 1;
+        this.v = this.r / 10;
         this.x = s.mouse.x || s.width / 2 - this.r;
         this.y = s.mouse.y || s.height / 2 - this.r;
         this.vx = random(-1 * this.v, this.v * 1);
         this.vy = random(-1 * this.v, this.v);
-        this.color = "hsla(" + hue + ", 100%, 50%, 1)";
+        this.color = "hsla(" + hue + ", 100%, 60%, 10)";
         this.life = 0;
         this.maxLife = random(50);
         this.stroke = Math.random() > .5 ? true : false;
@@ -28,7 +28,7 @@ P.prototype = {
         s.globalCompositeOperation = "source-over";
         s.fillStyle = this.color;
         s.shadowColor = this.color;
-        s.shadowBlur = this.r * 2;
+        s.shadowBlur = this.r * 10;
         s.beginPath();
         s.arc(this.x, this.y, this.r, 0, TWO_PI);
         s.fill();
