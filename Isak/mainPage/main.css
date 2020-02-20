@@ -1,4 +1,4 @@
-body{
+body {
     background-color: black;
     color: green;
     font-family: 'Courier New', Courier, monospace;
@@ -6,23 +6,26 @@ body{
     padding-top: 25px;
 }
 
-a:visited{
+li {
+    list-style: none;
+}
+
+a:visited {
     text-decoration: none;
     color: green;
 }
 
-a:active{
+a:active {
     text-decoration: none;
     color: green;
 }
 
-a:hover{
+a:hover {
     text-decoration: none;
     color: white;
 }
 
-a:link{
+a:link {
     text-decoration: none;
     color: green;
 }
-
