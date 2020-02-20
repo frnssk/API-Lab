@@ -1,10 +1,10 @@
 Sketch.create({
     setup() {
-      this.r = this.g = this.b = random(100, 200)
+      this.r = this.g = this.b = random(0, 100)
     },
     mousemove() {
-      this.r = 255 * (this.mouse.x / this.width)
-      this.g = 255 * (this.mouse.y / this.height)
+      this.r = 255 * random(this.mouse.x / this.width) 
+      this.g = 255 * random(this.mouse.y / this.height)
       this.b = 255 * abs(cos(PI * this.mouse.y / this.width))
     
     },
@@ -13,3 +13,5 @@ Sketch.create({
       this.fillRect(0, 0, this.width, this.height)
     }
   });
+
+  
