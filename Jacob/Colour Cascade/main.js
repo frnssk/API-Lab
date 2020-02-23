@@ -95,4 +95,11 @@ ctx.fillRect(0, 0, ctx.width, ctx.height);
     dot.init();
     dots.push(dot);
   };
+
+  ctx.drawGround = function(){
+    ctx.fillStyle = "#14171C"
+    ctx.fillRect(0, (ctx.height - 100), ctx.width, 100)
+  
+  } 
 })();
+
