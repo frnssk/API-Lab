@@ -13,8 +13,8 @@ function P() {}
 P.prototype = {
     constructor: P,
     init: function() {
-        this.r = random(8) + 1;
-        this.v = this.r / 10;
+        this.r = random(10);
+        this.v = this.r / 8;
         this.x = s.mouse.x || s.width / 2 - this.r;
         this.y = s.mouse.y || s.height / 2 - this.r;
         this.vx = random(-1 * this.v, this.v * 1);
@@ -52,7 +52,7 @@ s.setup = function() {
             var p = new P();
             p.init();
             particles.push(p)
-        }, i * 30);
+        }, i * 10);
     }
 };
 
