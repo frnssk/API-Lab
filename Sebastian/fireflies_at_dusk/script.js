@@ -18,9 +18,9 @@ var drawer = function(){
 var anim = function(){
   var x = 0, y = 0;
   //tallness of blades * variable + min 
-  var maxTall = Math.random()*(h/4)+(h/4);
+  var maxTall = Math.random()*(h/10)+(h/10);
   //thickness of blades
-  var maxSize = Math.random()*(h/60)+5;
+  var maxSize = Math.random()*(h/100)+5;
   //speed of blade growth
   var speed = Math.random()*1;  
   var position = Math.random()*w-w/2;
@@ -31,13 +31,13 @@ var anim = function(){
   return function(){
     
     //how fast + far the blades bend 
-    var deviation=Math.cos(x/50)*Math.min(x/4,50),
+    var deviation=Math.cos(x/20)*Math.min(x/4,50),
         tall = Math.min(x/2,maxTall),
-        size = Math.min(x/50,maxSize);
+        size = Math.min(x/100,maxSize);
     x+=speed;
     ctx.save();
     
-    ctx.strokeWidth=10;
+    ctx.strokeWidth=20;
     ctx.translate(w/2+position,h)
     ctx.fillStyle=color;
     
@@ -52,7 +52,7 @@ var anim = function(){
   }    
 };
 //number of blades it makes
-for(var x = 0; x<(w/7);x++){stack.push(anim());}
+for(var x = 0; x<(w/4);x++){stack.push(anim());}
 canvas.width = w;
 canvas.height = h;
 drawer();
@@ -64,26 +64,67 @@ Bouncing Balls originally by Rob Glazebrook
 Added glow, changed size, color and speed
 */
 
+/*var moon = [],
+  particleCount = 1;
+  moon = function(x,y) {
+    this.x = x;
+    this.y = y;
+
+    this.radius = random(10.10);
+
+    this.rgba = 'rgba('+floor(random(255,255))+','+floor(random(255,255))+','+floor(random(255,255))+','+random(.2,10)+')';
+
+          //changes speed of particle
+          this.vx = random(-.0,.120);
+          this.vy = random(-.0,.0);
+          
+          // Draw our particle to the canvas.
+          this.draw = function(ctx) {
+            ctx.fillStyle = this.rgba;
+            ctx.beginPath();
+            ctx.arc(this.x,this.y,this.radius,0,TWO_PI);
+            ctx.fill();
+            
+            //adds blinking glow
+            ctx.shadowBlur = random(15,30);
+            //glow color
+            ctx.shadowColor = "white";
+          };
+          
+          // Update our position. 
+          this.update = function(ctx) {
+          
+            this.x += this.vx;
+            this.y += this.vy;
+      
+          }
+
+  };*/
+ 
+
+
+
 var particles = [],
-    //number of particles
-    particleCount = 200;
+    //number of stars
+    particleCount = 1000;
     Particle = function(x,y) {     
       this.x = x;
       this.y = y;
       
       
       
-      //size of particles 
-      this.radius = random(1,5);
+      //size of stars
+      this.radius = random(0,1);
       
       //colors red,green,blue,transparency 
-      this.rgba = 'rgba('+floor(random(240,245))+','+floor(random(219,245))+','+floor(random(140,144))+','+random(.2,.8)+')';
+      this.rgba = 'rgba('+floor(random(200,255))+','+floor(random(200,255))+','+floor(random(200,255))+','+random(100,100)+')';
+
       
-      //changes speed of particle
-      this.vx = random(-.5,.5);
-      this.vy = random(-.5,.5);
+      //set random speed of the stars
+      this.vx = random(-.0,.120);
+      this.vy = random(-.0,.0);
       
-      // Draw our particle to the canvas.
+      // Draw the stars to canvas.
       this.draw = function(ctx) {
         ctx.fillStyle = this.rgba;
         ctx.beginPath();
@@ -101,25 +142,12 @@ var particles = [],
       
         this.x += this.vx;
         this.y += this.vy;
-        // Bounce off edges.
-        if(this.x + this.radius > ctx.width) {
-          this.vx *= -1;
-          this.x = ctx.width - this.radius;
-        }
-        if(this.x - this.radius < 0) {
-          this.vx *= -1;
-          this.x = this.radius;
-        }
-        if(this.y + this.radius > ctx.height) {
-          this.vy *= -1;
-          this.y = ctx.height - this.radius;
-        }
-        if(this.y - this.radius < 0) {
-          this.vy *= -1;
-          this.y = this.radius;
-        }        
+  
       }
     };
+
+    
+    
 
 var sketch = Sketch.create({
   setup: function() {
@@ -142,3 +170,4 @@ var sketch = Sketch.create({
     }
   }
 });
+
