@@ -1,6 +1,6 @@
 document.body.style.background = "black";
 document.body.style.overflow = "hidden";
-document.body.style.cursor = "none";
+document.body.style.cursor = "default";
 
 const $ = Sketch.create({ autoclear: false });
 const squares = [];
@@ -16,6 +16,10 @@ let point = {
 };
 
 $.draw = function() {
+  $.click = function() {
+    this.toggle();
+    this.clear();
+  };
   this.globalCompositeOperation = "source-over";
   this.fillStyle = "rgba(0,0,0,.4)";
   this.fillRect(0, 0, this.width, this.height);
@@ -74,6 +78,12 @@ class Square {
   }
 }
 
+for (let s = 0; s < maxSquares; s++) {
+  setTimeout(() => squares.push(new Square()), s * 5);
+}
+
+/*
+
 document.addEventListener("mouseover", animationDraw);
 document.addEventListener("mouseout", animationStop);
 
@@ -91,7 +101,7 @@ function animationStop() {
 
 // Move the mouse around randomly, until the user moves their mouse/touch
 // so preview looks more interesting.
-/*
+
 const moveMouseRandomly = () => {
   if (!hasMovedMouse) {
     $.mouse.x = $.width / 2 + random(-200, 200);
