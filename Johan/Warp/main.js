@@ -2,24 +2,29 @@ document.body.style.background = "black";
 document.body.style.overflow = "hidden";
 document.body.style.cursor = "default";
 
-const $ = Sketch.create({ autoclear: false });
+const $ = Sketch.create({ autoclear: false, retina: true });
 const squares = [];
 const maxSquares = 20;
 let minHue = 50;
 let maxHue = 500;
 let hue = minHue;
-let hasMovedMouse = false;
+//let hasMovedMouse = false;
 
 let point = {
-  x: $.width / 2,
-  y: $.height / 2
+  x: random(0, $.width),
+  y: random(0, $.height)
 };
 
 $.draw = function() {
-  $.click = function() {
-    this.toggle();
+  $.mouseout = function() {
+    this.stop();
     this.clear();
   };
+  $.mouseover = function() {
+    (point.x = random(0, $.width)), (point.y = random(0, $.height));
+    this.start();
+  };
+
   this.globalCompositeOperation = "source-over";
   this.fillStyle = "rgba(0,0,0,.4)";
   this.fillRect(0, 0, this.width, this.height);
@@ -35,12 +40,14 @@ $.draw = function() {
   */
 };
 
+/*
 $.mousemove = () => (hasMovedMouse = true);
 $.touchmove = () => (hasMovedMouse = true);
 $.mouseout = function() {
   hasMovedMouse = false;
-  //moveMouseRandomly();
+  moveMouseRandomly();
 };
+*/
 
 class Square {
   constructor() {
@@ -70,8 +77,8 @@ class Square {
 
   update() {
     this.size += this.sv;
-    this.sv *= 1.1;
-    this.a += 0.05;
+    this.sv *= 1.05;
+    this.a += 0.01;
     if (this.size > ($.width + $.height) / 10) {
       this.init();
     }
