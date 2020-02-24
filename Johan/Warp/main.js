@@ -1,72 +1,73 @@
+// Setup the document style
 document.body.style.background = "black";
 document.body.style.overflow = "hidden";
 document.body.style.cursor = "default";
 
-const $ = Sketch.create({ autoclear: false, retina: true });
+// Creates and returns a new sketch.
+const s = Sketch.create({ autoclear: false, retina: true });
+// Array that stores all the created squares
 const squares = [];
 const maxSquares = 20;
+// Sets the color range
 let minHue = 50;
 let maxHue = 500;
 let hue = minHue;
-//let hasMovedMouse = false;
 
+// Assign the random x and y value to the variable
 let point = {
-  x: random(0, $.width),
-  y: random(0, $.height)
+  x: random(0, s.width),
+  y: random(0, s.height)
 };
 
-$.draw = function() {
-  $.mouseout = function() {
-    this.stop();
-    this.clear();
+// Instance method that draws the sketch
+s.draw = function() {
+  s.mouseout = function() {
+    // Instance method that stops and clears the sketch
+    for (let s = 0; s < maxSquares; s++) {
+      // Loop that removes squares from the array when the mouse is out of the sketch
+      setTimeout(() => squares.pop(new Square()), s * 5);
+    }
   };
-  $.mouseover = function() {
-    (point.x = random(0, $.width)), (point.y = random(0, $.height));
-    this.start();
+  // Instance method that checks if mouse is over sketch and then reassigns the point
+  s.mouseover = function() {
+    (point.x = random(0, s.width)), (point.y = random(0, s.height));
+    // Loop that creates and pushes new squares into the array
+    for (let i = 0; i < maxSquares; i++) {
+      setTimeout(() => squares.push(new Square()), i * 5);
+    }
   };
 
   this.globalCompositeOperation = "source-over";
   this.fillStyle = "rgba(0,0,0,.4)";
   this.fillRect(0, 0, this.width, this.height);
+
+  //Draws all the squares in the array
   squares.forEach(sq => sq.draw());
   this.strokeStyle = `hsla(${this.hue}, 100%, 50%, ${this.a})`;
 
   hue = hue > maxHue ? minHue : hue + 0.8;
-
-  /*if (!Math.hypot(this.mouse.x - point.x, this.mouse.y - point.y) <= 0.1) {
-    point.x += (this.mouse.x - point.x) * 0.1;
-    point.y += (this.mouse.y - point.y) * 0.1;
-  }
-  */
 };
 
-/*
-$.mousemove = () => (hasMovedMouse = true);
-$.touchmove = () => (hasMovedMouse = true);
-$.mouseout = function() {
-  hasMovedMouse = false;
-  moveMouseRandomly();
-};
-*/
-
+// Class that creates new squares
 class Square {
   constructor() {
     this.init();
   }
+  // Initiates the squares with set values
   init() {
-    this.size = 50;
+    this.size = 20;
     this.sv = 1;
     this.a = 0;
     this.x = point.x;
     this.y = point.y;
     this.hue = hue;
   }
-
+  // Method that draws the square when called upon
   draw() {
-    $.globalCompositeOperation = "lighter";
-    $.lineWidth = 4;
-    $.strokeStyle = `hsla(${this.hue}, 100%, 50%, ${this.a})`;
-    $.strokeRect(
+    s.globalCompositeOperation = "lighter";
+    s.lineWidth = 2;
+    s.strokeStyle = `hsla(${this.hue}, 100%, 50%, ${this.a})`;
+    s.strokeRect(
       this.x - this.size / 2,
       this.y - this.size / 2,
       this.size,
@@ -74,19 +75,15 @@ class Square {
     );
     this.update();
   }
-
+  // Method that updates the square with new values
   update() {
     this.size += this.sv;
     this.sv *= 1.05;
     this.a += 0.01;
-    if (this.size > ($.width + $.height) / 10) {
+    if (this.size > (s.width + s.height) / 20) {
       this.init();
     }
   }
-}
-
-for (let s = 0; s < maxSquares; s++) {
-  setTimeout(() => squares.push(new Square()), s * 5);
 }
 
 /*
@@ -106,16 +103,4 @@ function animationStop() {
   }
 }
 
-// Move the mouse around randomly, until the user moves their mouse/touch
-// so preview looks more interesting.
-
-const moveMouseRandomly = () => {
-  if (!hasMovedMouse) {
-    $.mouse.x = $.width / 2 + random(-200, 200);
-    $.mouse.y = $.height / 2 + random(-200, 200);
-    setTimeout(() => moveMouseRandomly(), random(500, 2000));
-  }
-};
-
-moveMouseRandomly();
 */
