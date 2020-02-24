@@ -14,6 +14,7 @@
     height: 50,
     width: 50,
     step: 20
+   
   };
 
 
@@ -49,23 +50,25 @@
       blob.posX -= blob.step;
     }
   }
-
+  //Gives blob legs
   function blobJump(){
     if (blob.posY == (ctx.height- 250)){
     blob.velocityY += 50;
     }  
   }
-
+  //function that controls the gravity for Blob
   function blobGravity(){
     if (blob.posY < (ctx.height - 250)){
       blob.velocityY -= 5;
 
+      //Makes sure Blob doesn't get stuck in the ground
     } else if ( blob.posY > (ctx.height - 250)){
-      blob.posY = (ctx.height - 300)
+      blob.posY = (ctx.height - 250)
+      blob.velocityY = 0;
       
     }
   }
-
+  //Moves blob higher
   function blobJumpHandler(){
     blob.posY -= blob.velocityY;
   }
@@ -80,8 +83,6 @@
       this.vx = 1; // this line changes the angle at which the dot enter the screen
       this.vy = random(1) + 10;
       this.color = "#72B4E8";
-      /* removed temporarily to remove colour randomness, to bring back, replace the line above with the line that's been removed
-       this.color = "hsla(" + h + ", 100%, 50%, .6)"; */
       h += 0.1;
       if (h > 360) {
         h = 0;
@@ -160,9 +161,8 @@
     }
     //Gravity for Blob
     blobGravity();
-
     blobJumpHandler();
-  
+
   };
 
   ctx.makeDot = function(reuseDot) {
