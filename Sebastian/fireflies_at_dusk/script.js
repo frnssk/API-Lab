@@ -39,7 +39,7 @@ var particles = [],
         ctx.fill();
         
         //Adds blinking effect to the stars
-        ctx.shadowBlur = random(1,20);
+        ctx.shadowBlur = random(1,50);
         //blinking color
         ctx.shadowColor = "white";
       };

@@ -68,8 +68,8 @@ var particles = [],
 
       
       //set random speed of the stars
-      this.vx = random(-.0,.100);
-      this.vy = random(-.0,0);
+      this.vx = random(0,.100);
+      this.vy = random(0,0);
       
       //Draw the stars to canvas.
       this.draw = function(ctx) {
@@ -79,7 +79,7 @@ var particles = [],
         ctx.fill();
         
         //Adds blinking effect to the stars
-        ctx.shadowBlur = random(1,20);
+        ctx.shadowBlur = random(1,50);
         //blinking color
         ctx.shadowColor = "white";
       };
