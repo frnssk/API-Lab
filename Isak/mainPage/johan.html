@@ -17,7 +17,7 @@
       document.body.style.cursor = "default";
 
       // Creates and returns a new sketch.
-      const s = Sketch.create({ autoclear: false, retina: true });
+      const s = Sketch.create({ autoclear: false });
       // Array that stores all the created squares
       const squares = [];
       const maxSquares = 20;
@@ -34,20 +34,12 @@
 
       // Instance method that draws the sketch
       s.draw = function() {
-        // Instance method that checks if mouse is over the sketch, then reassigns the point values and initiates the loop that creates squares
-        s.mouseover = function() {
+        // Instance method that checks if mouse is clicked on the sketch, then reassigns the point values and initiates the loop that creates squares
+        s.click = function() {
           (point.x = random(0, s.width)), (point.y = random(0, s.height));
           // Loop that creates and pushes new squares into the array
           for (let i = 0; i < maxSquares; i++) {
             setTimeout(() => squares.push(new Square()), i * 5);
-          }
-        };
-
-        s.mouseout = function() {
-          // Instance method that stops and clears the sketch
-          for (let i = 0; i < maxSquares; i++) {
-            // Loop that removes squares from the array
-            setTimeout(() => squares.pop(new Square()), i * 5);
           }
         };
 
@@ -76,6 +68,7 @@
           this.y = point.y;
           this.hue = hue;
         }
+
         // Method that draws the square when called upon
         draw() {
           s.globalCompositeOperation = "lighter";
@@ -91,6 +84,16 @@
         }
         // Method that updates the square with new values
         update() {
+          // Checks if mouse is over squares and if condition is true, the array gets empty
+          if (
+            s.mouse.x >= this.x &&
+            s.mouse.x <= this.x + 10 &&
+            s.mouse.y >= this.y &&
+            s.mouse.y <= this.y + 10
+          ) {
+            // Deletes the squares
+            squares.length = 0;
+          }
           this.size += this.sv;
           this.sv *= 1.05;
           this.a += 0.01;
