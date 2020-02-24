@@ -9,7 +9,7 @@
   //Adding the object for the controllable blob
   var blob = {
     posX: 100,
-    posY: ctx.height - 250,
+    posY: ctx.height - 1000,
     velocityY: 0,
     height: 50,
     width: 50,
@@ -53,16 +53,16 @@
   //Gives blob legs
   function blobJump(){
     if (blob.posY == (ctx.height- 250)){
-    blob.velocityY += 50;
+    blob.velocityY += 30;
     }  
   }
   //function that controls the gravity for Blob
   function blobGravity(){
     if (blob.posY < (ctx.height - 250)){
-      blob.velocityY -= 5;
+      blob.velocityY -= 2;
 
       //Makes sure Blob doesn't get stuck in the ground
-    } else if ( blob.posY > (ctx.height - 250)){
+    }else if ( blob.posY > (ctx.height - 250)){
       blob.posY = (ctx.height - 250)
       blob.velocityY = 0;
       
@@ -150,15 +150,15 @@
 
     for (var i = 0; i < dots.length; i++) {
       dots[i].draw();
-
+    }
       //draws ground
       ctx.fillStyle = "#11253D";
       ctx.fillRect(0, ctx.height - 200, ctx.width, ctx.height);
 
       //draws blob
-      ctx.fillStyle = "#2E66AB";
+      ctx.fillStyle = "#6688B3";
       ctx.fillRect(blob.posX, blob.posY, blob.width, blob.height);
-    }
+    
     //Gravity for Blob
     blobGravity();
     blobJumpHandler();
