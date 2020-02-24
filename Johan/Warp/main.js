@@ -21,14 +21,7 @@ let point = {
 
 // Instance method that draws the sketch
 s.draw = function() {
-  s.mouseout = function() {
-    // Instance method that stops and clears the sketch
-    for (let s = 0; s < maxSquares; s++) {
-      // Loop that removes squares from the array when the mouse is out of the sketch
-      setTimeout(() => squares.pop(new Square()), s * 5);
-    }
-  };
-  // Instance method that checks if mouse is over sketch and then reassigns the point
+  // Instance method that checks if mouse is over the sketch, then reassigns the point values and initiates the loop that creates squares
   s.mouseover = function() {
     (point.x = random(0, s.width)), (point.y = random(0, s.height));
     // Loop that creates and pushes new squares into the array
@@ -37,11 +30,19 @@ s.draw = function() {
     }
   };
 
+  s.mouseout = function() {
+    // Instance method that stops and clears the sketch
+    for (let i = 0; i < maxSquares; i++) {
+      // Loop that removes squares from the array
+      setTimeout(() => squares.pop(new Square()), i * 5);
+    }
+  };
+
   this.globalCompositeOperation = "source-over";
   this.fillStyle = "rgba(0,0,0,.4)";
   this.fillRect(0, 0, this.width, this.height);
 
-  //Draws all the squares in the array
+  // Draws all the squares in the array
   squares.forEach(sq => sq.draw());
   this.strokeStyle = `hsla(${this.hue}, 100%, 50%, ${this.a})`;
 
@@ -85,22 +86,3 @@ class Square {
     }
   }
 }
-
-/*
-
-document.addEventListener("mouseover", animationDraw);
-document.addEventListener("mouseout", animationStop);
-
-function animationDraw() {
-  for (let s = 0; s < maxSquares; s++) {
-    setTimeout(() => squares.push(new Square()), s * 5);
-  }
-}
-
-function animationStop() {
-  for (let s = 0; s < maxSquares; s++) {
-    setTimeout(() => squares.pop(new Square()), s * 5);
-  }
-}
-
-*/
