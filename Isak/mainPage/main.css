@@ -4,47 +4,26 @@ body {
     font-family: 'Courier New', Courier, monospace;
     padding-left: 100px;
     padding-top: 25px;
+    
 }
 
-<<<<<<< HEAD
 a:hover{
-=======
-li {
-    list-style: none;
-}
-
-a:visited {
->>>>>>> 9a843f0dabbf9dd30a108ddb93c56f153e699972
     text-decoration: none;
     color: white;
-    top: 2px;
 }
 
-<<<<<<< HEAD
 a:visited{
-=======
-a:active {
->>>>>>> 9a843f0dabbf9dd30a108ddb93c56f153e699972
     text-decoration: none;
     color: rgb(91, 183, 68);
 }
 
-<<<<<<< HEAD
-a:active{
-=======
-a:hover {
->>>>>>> 9a843f0dabbf9dd30a108ddb93c56f153e699972
+a:active {
     text-decoration: none;
     color: rgb(91, 183, 68);
 }
 
 a:link {
     text-decoration: none;
-<<<<<<< HEAD
     color: rgb(91, 183, 68);
 }
 
-=======
-    color: green;
-}
->>>>>>> 9a843f0dabbf9dd30a108ddb93c56f153e699972
