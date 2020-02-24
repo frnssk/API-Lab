@@ -52,7 +52,7 @@
   //Gives blob legs
   function blobJump(){
     if (blob.posY == (ctx.height- 250)){
-    blob.velocityY += 40;
+    blob.velocityY += 50;
     }  
   }
   //function that controls the gravity for Blob
