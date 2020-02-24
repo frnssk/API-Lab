@@ -6,23 +6,30 @@
   var max = 100;
   var h = 0;
 
+  //Adding the object for the controllable blob
   var blob = {
     posX: 100,
     posY: ctx.height - 250,
+    velocityY: 0,
     height: 50,
     width: 50,
     step: 10
   };
 
 
-  //Controls for the blob
+  //eventlistener to control the blob
   document.addEventListener("keydown", function(event) {
-    if (event.keyCode == 37) {
+
+    if (event.keyCode == 65) {
       setInterval(moveLeft(), 10);
-    } else if (event.keyCode == 39) {
+    } else if (event.keyCode == 68 ) {
       setInterval(moveRight(), 10);
+    } else if(event.keyCode == 32 || event.keyCode == 87){
+      blobJump();
     }
   });
+
+  //actual functions that control the blob, if/else if statements to make sure the blob doesn't move out of bounds
   function moveRight() {
     if (blob.posX > ctx.width - 50) {
       blob.posX -= 20;
@@ -42,6 +49,24 @@
       blob.posX -= blob.step;
     }
   }
+
+  function blobJump(){
+    blob.velocityY += 50;
+  }
+
+  function blobGravity(){
+    if (blob.posY < (ctx.height - 250)){
+      blob.velocityY -= 5;
+
+    } else if ( blob.posY >(ctx.height - 250)){
+      blob.posY = (ctx.height - 300)
+    }
+  }
+
+  function blobJumpHandler(){
+    blob.posY -= blob.velocityY;
+  }
+
 
   //Creates the dot object with some inherent properties
   Dot = function() {
@@ -130,6 +155,11 @@
       ctx.fillStyle = "#2E66AB";
       ctx.fillRect(blob.posX, blob.posY, blob.width, blob.height);
     }
+    //Gravity for Blob
+    blobGravity();
+
+    blobJumpHandler();
+  
   };
 
   ctx.makeDot = function(reuseDot) {
