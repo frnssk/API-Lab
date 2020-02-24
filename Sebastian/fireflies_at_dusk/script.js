@@ -17,11 +17,11 @@ var drawer = function(){
 }
 var anim = function(){
   var x = 0, y = 0;
-  //tallness of blades * variable + min 
+  //tallness of straws * variable + min 
   var maxTall = Math.random()*(h/10)+(h/10);
-  //thickness of blades
+  //thickness of straws
   var maxSize = Math.random()*(h/100)+5;
-  //speed of blade growth
+  //speed of straws growth
   var speed = Math.random()*1;  
   var position = Math.random()*w-w/2;
   var c = function(l,u){return Math.round(Math.random()*(u||255)+l||0);}
@@ -30,7 +30,7 @@ var anim = function(){
   var color = 'rgb('+c(125,50)+','+c(225,80)+','+c(80,50)+')';
   return function(){
     
-    //how fast + far the blades bend 
+    //how fast + far the grass straws bend 
     var deviation=Math.cos(x/20)*Math.min(x/4,50),
         tall = Math.min(x/2,maxTall),
         size = Math.min(x/100,maxSize);
@@ -51,18 +51,13 @@ var anim = function(){
     ctx.restore()
   }    
 };
-//number of blades it makes
+//number of grass straws it makes
 for(var x = 0; x<(w/4);x++){stack.push(anim());}
 canvas.width = w;
 canvas.height = h;
 drawer();
 
 
-
-/*
-Bouncing Balls originally by Rob Glazebrook
-Added glow, changed size, color and speed
-*/
 
 /*var moon = [],
   particleCount = 1;
@@ -101,7 +96,10 @@ Added glow, changed size, color and speed
 
   };*/
  
-
+/*
+Bouncing Balls originally by Rob Glazebrook
+Added glow, changed size, color and speed
+*/
 
 
 var particles = [],
@@ -111,8 +109,6 @@ var particles = [],
       this.x = x;
       this.y = y;
       
-      
-      
       //size of stars
       this.radius = random(0,1);
       
@@ -121,7 +117,7 @@ var particles = [],
 
       
       //set random speed of the stars
-      this.vx = random(-.0,.120);
+      this.vx = random(-.0,.300);
       this.vy = random(-.0,.0);
       
       // Draw the stars to canvas.
@@ -146,8 +142,9 @@ var particles = [],
       }
     };
 
-    
-    
+
+
+
 
 var sketch = Sketch.create({
   setup: function() {
