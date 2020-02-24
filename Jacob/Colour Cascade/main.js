@@ -1,30 +1,65 @@
 (function() {
-
-    //sets up the context with a canvas, sets up an array to hold the dots that are animated on the screen, as well as a maximum number of dots on the screen at the same time. 
-    //the "h" variable is there to randomise colours
+  //sets up the context with a canvas, sets up an array to hold the dots that are animated on the screen, as well as a maximum number of dots on the screen at the same time.
+  //the "h" variable is there to randomise colours
   var ctx = Sketch.create({ autoclear: false });
   var dots = [];
   var max = 100;
   var h = 0;
 
+  var blob = {
+    posX: 100,
+    posY: ctx.height - 250,
+    height: 50,
+    width: 50,
+    step: 10
+  };
+
+
+  //Controls for the blob
+  document.addEventListener("keydown", function(event) {
+    if (event.keyCode == 37) {
+      setInterval(moveLeft(), 10);
+    } else if (event.keyCode == 39) {
+      setInterval(moveRight(), 10);
+    }
+  });
+  function moveRight() {
+    if (blob.posX > ctx.width - 50) {
+      blob.posX -= 20;
+    } else if (blob.posX < 0) {
+      blob.posX = 0;
+    } else {
+      blob.posX += blob.step;
+    }
+  }
+
+  function moveLeft() {
+    if (blob.posX > ctx.width - 50) {
+      blob.posX = (ctx.width - 50);
+    } else if (blob.posX < 0) {
+      blob.posX = 10;
+    } else {
+      blob.posX -= blob.step;
+    }
+  }
+
   //Creates the dot object with some inherent properties
   Dot = function() {
     this.init = function() {
-      this.size = random(2) + 3 ;
+      this.size = random(2) + 3;
       this.x = random(-300, ctx.width);
       this.y = -this.size;
       this.vx = 1; // this line changes the angle at which the dot enter the screen
-      this.vy = random(1) + 10 ;
+      this.vy = random(1) + 10;
       this.color = "#72B4E8";
-       /* removed temporarily to remove colour randomness, to bring back, replace the line above with the line that's been removed
+      /* removed temporarily to remove colour randomness, to bring back, replace the line above with the line that's been removed
        this.color = "hsla(" + h + ", 100%, 50%, .6)"; */
-       h += 0.1;
+      h += 0.1;
       if (h > 360) {
         h = 0;
-        
       }
 
-      //some more options that alter the behaviour of the dot. 
+      //some more options that alter the behaviour of the dot.
       this.life = 10;
       this.gravity = 0.5;
       this.maxLife = 100;
@@ -39,14 +74,14 @@
       this.life;
     };
 
-    //Draws the dot 
+    //Draws the dot
     this.draw = function() {
       ctx.fillStyle = this.color;
       ctx.fillRect(this.x, this.y, this.size, this.size);
     };
   };
 
-  // Checks the dots to see if they need to be removed or not 
+  // Checks the dots to see if they need to be removed or not
   ctx.update = function() {
     for (var i = 0; i < dots.length; i++) {
       dots[i].update();
@@ -75,18 +110,25 @@
 
   //draws the background then fires the function that draws a single dot, but in a for loop so that every dot is drawn
   ctx.draw = function() {
-  
-  // Made the background into a gradient
-   var grd = ctx.createLinearGradient(0 , 0, 0, 500);
-  grd.addColorStop(0, "#1D2229");
-  grd.addColorStop(1, "#56667A");
+    // Made the background into a gradient
+    var grd = ctx.createLinearGradient(0, 0, 0, 500);
+    grd.addColorStop(0, "#1D2229");
+    grd.addColorStop(1, "#56667A");
 
-// Fill with gradient
-ctx.fillStyle = grd;
-ctx.fillRect(0, 0, ctx.width, ctx.height);
+    // Fill with gradient
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, 0, ctx.width, ctx.height);
 
     for (var i = 0; i < dots.length; i++) {
       dots[i].draw();
+
+      //draws ground
+      ctx.fillStyle = "#11253D";
+      ctx.fillRect(0, ctx.height - 200, ctx.width, ctx.height);
+
+      //draws blob
+      ctx.fillStyle = "#2E66AB";
+      ctx.fillRect(blob.posX, blob.posY, blob.width, blob.height);
     }
   };
 
@@ -95,11 +137,4 @@ ctx.fillRect(0, 0, ctx.width, ctx.height);
     dot.init();
     dots.push(dot);
   };
-
-  ctx.drawGround = function(){
-    ctx.fillStyle = "#14171C"
-    ctx.fillRect(0, (ctx.height - 100), ctx.width, 100)
-  
-  } 
 })();
-
