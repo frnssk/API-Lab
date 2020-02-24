@@ -19,7 +19,9 @@ document.addEventListener("click", buttonClick);
 
 /* A function that runs the entire animation of the button falling when the button is clicked*/ 
 function buttonClick(e){
-  if (e.clientX > 110 && e.clientX < 410 && e.clientY > 20 && e.clientY < 120) {
+if (e.clientX > 110 && e.clientX < 410 && e.clientY > 20 && e.clientY < 120) {
+  
+
   function Vector2(x, y, width, height){ 
   };
   
@@ -46,7 +48,6 @@ function buttonClick(e){
     this.velocityY += 0.4;
     this.setPosition(this.x + this.velocityX, this.y + this.velocityY);
     };
-  
   
   Box.prototype.draw = function() {
     ctx.fillStyle = this.color;
