@@ -28,7 +28,7 @@ var particles = [],
 
       
       //set random speed of the stars
-      this.vx = random(-.0,.100);
+      this.vx = random(-.0,.200);
       this.vy = random(-.0,0);
       
       //Draw the stars to canvas.
@@ -90,7 +90,7 @@ var moon = [],
 
       
       //set random speed of the moon
-      this.vx = random(-.0,0);
+      this.vx = random(-.0,.2);
       this.vy = random(-.0,0);
       
       //Draw the moon to canvas.
