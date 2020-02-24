@@ -14,6 +14,7 @@
     height: 50,
     width: 50,
     step: 20
+   
   };
 
 
@@ -82,8 +83,6 @@
       this.vx = 1; // this line changes the angle at which the dot enter the screen
       this.vy = random(1) + 10;
       this.color = "#72B4E8";
-      /* removed temporarily to remove colour randomness, to bring back, replace the line above with the line that's been removed
-       this.color = "hsla(" + h + ", 100%, 50%, .6)"; */
       h += 0.1;
       if (h > 360) {
         h = 0;
@@ -162,8 +161,8 @@
     }
     //Gravity for Blob
     blobGravity();
-
     blobJumpHandler();
+
   };
 
   ctx.makeDot = function(reuseDot) {
