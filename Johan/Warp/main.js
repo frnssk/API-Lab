@@ -2,7 +2,7 @@ document.body.style.background = "black";
 document.body.style.overflow = "hidden";
 document.body.style.cursor = "default";
 
-const $ = Sketch.create({ autoclear: false, retina: true });
+const s = Sketch.create({ autoclear: false, retina: true });
 const squares = [];
 const maxSquares = 20;
 let minHue = 50;
@@ -11,17 +11,17 @@ let hue = minHue;
 //let hasMovedMouse = false;
 
 let point = {
-  x: random(0, $.width),
-  y: random(0, $.height)
+  x: random(0, s.width),
+  y: random(0, s.height)
 };
 
-$.draw = function() {
-  $.mouseout = function() {
+s.draw = function() {
+  s.mouseout = function() {
     this.stop();
     this.clear();
   };
-  $.mouseover = function() {
-    (point.x = random(0, $.width)), (point.y = random(0, $.height));
+  s.mouseover = function() {
+    (point.x = random(0, s.width)), (point.y = random(0, s.height));
     this.start();
   };
 
@@ -41,9 +41,9 @@ $.draw = function() {
 };
 
 /*
-$.mousemove = () => (hasMovedMouse = true);
-$.touchmove = () => (hasMovedMouse = true);
-$.mouseout = function() {
+s.mousemove = () => (hasMovedMouse = true);
+s.touchmove = () => (hasMovedMouse = true);
+s.mouseout = function() {
   hasMovedMouse = false;
   moveMouseRandomly();
 };
@@ -54,7 +54,7 @@ class Square {
     this.init();
   }
   init() {
-    this.size = 50;
+    this.size = 30;
     this.sv = 1;
     this.a = 0;
     this.x = point.x;
@@ -63,10 +63,10 @@ class Square {
   }
 
   draw() {
-    $.globalCompositeOperation = "lighter";
-    $.lineWidth = 4;
-    $.strokeStyle = `hsla(${this.hue}, 100%, 50%, ${this.a})`;
-    $.strokeRect(
+    s.globalCompositeOperation = "lighter";
+    s.lineWidth = 4;
+    s.strokeStyle = `hsla(${this.hue}, 100%, 50%, ${this.a})`;
+    s.strokeRect(
       this.x - this.size / 2,
       this.y - this.size / 2,
       this.size,
@@ -79,14 +79,14 @@ class Square {
     this.size += this.sv;
     this.sv *= 1.05;
     this.a += 0.01;
-    if (this.size > ($.width + $.height) / 10) {
+    if (this.size > (s.width + s.height) / 10) {
       this.init();
     }
   }
 }
 
-for (let s = 0; s < maxSquares; s++) {
-  setTimeout(() => squares.push(new Square()), s * 5);
+for (let i = 0; i < maxSquares; i++) {
+  setTimeout(() => squares.push(new Square()), i * 5);
 }
 
 /*
@@ -106,16 +106,4 @@ function animationStop() {
   }
 }
 
-// Move the mouse around randomly, until the user moves their mouse/touch
-// so preview looks more interesting.
-
-const moveMouseRandomly = () => {
-  if (!hasMovedMouse) {
-    $.mouse.x = $.width / 2 + random(-200, 200);
-    $.mouse.y = $.height / 2 + random(-200, 200);
-    setTimeout(() => moveMouseRandomly(), random(500, 2000));
-  }
-};
-
-moveMouseRandomly();
 */
