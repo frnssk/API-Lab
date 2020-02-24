@@ -164,7 +164,7 @@
     blobJumpHandler();
 
   };
-
+  //"teleports" the dots that hit the ground up to the top again
   ctx.makeDot = function(reuseDot) {
     var dot = reuseDot ? reuseDot : new Dot();
     dot.init();
