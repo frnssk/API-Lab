@@ -13,7 +13,7 @@
     velocityY: 0,
     height: 50,
     width: 50,
-    step: 10
+    step: 20
   };
 
 
@@ -51,15 +51,18 @@
   }
 
   function blobJump(){
+    if (blob.posY == (ctx.height- 250)){
     blob.velocityY += 50;
+    }  
   }
 
   function blobGravity(){
     if (blob.posY < (ctx.height - 250)){
       blob.velocityY -= 5;
 
-    } else if ( blob.posY >(ctx.height - 250)){
+    } else if ( blob.posY > (ctx.height - 250)){
       blob.posY = (ctx.height - 300)
+      
     }
   }
 
