@@ -49,23 +49,25 @@
       blob.posX -= blob.step;
     }
   }
-
+  //Gives blob legs
   function blobJump(){
     if (blob.posY == (ctx.height- 250)){
-    blob.velocityY += 50;
+    blob.velocityY += 40;
     }  
   }
-
+  //function that controls the gravity for Blob
   function blobGravity(){
     if (blob.posY < (ctx.height - 250)){
       blob.velocityY -= 5;
 
+      //Makes sure Blob doesn't get stuck in the ground
     } else if ( blob.posY > (ctx.height - 250)){
-      blob.posY = (ctx.height - 300)
+      blob.posY = (ctx.height - 250)
+      blob.velocityY = 0;
       
     }
   }
-
+  //Moves blob higher
   function blobJumpHandler(){
     blob.posY -= blob.velocityY;
   }
@@ -162,7 +164,6 @@
     blobGravity();
 
     blobJumpHandler();
-  
   };
 
   ctx.makeDot = function(reuseDot) {
