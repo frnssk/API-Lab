@@ -13,7 +13,7 @@ var ctx = Sketch.create({
   container: document.getElementById('container'),
   draw: function() {
 		this.beginPath();
-		this.fillRect(100, 10, 100, 35 );
+		this.fillRect(100, 10, 300, 100 );
     this.fillStyle = "#306955";
     }
   });
@@ -59,7 +59,7 @@ Box.prototype.draw = function() {
   };
 
 ctx.setup = function () {
-  this.player = new Box({x: 100, y: 10, width: 100, height: 35});
+  this.player = new Box({x: 100, y: 10, width: 300, height: 100});
   };
 
 ctx.update = function() {
