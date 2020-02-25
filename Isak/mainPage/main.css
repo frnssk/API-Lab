@@ -1,31 +1,29 @@
 body {
     background-color: black;
-    color: green;
+    color: rgb(91, 183, 68);
     font-family: 'Courier New', Courier, monospace;
     padding-left: 100px;
     padding-top: 25px;
+    
 }
 
-li {
-    list-style: none;
-}
-
-a:visited {
-    text-decoration: none;
-    color: green;
-}
-
-a:active {
-    text-decoration: none;
-    color: green;
-}
-
-a:hover {
+a:hover{
     text-decoration: none;
     color: white;
 }
 
+a:visited{
+    text-decoration: none;
+    color: rgb(91, 183, 68);
+}
+
+a:active {
+    text-decoration: none;
+    color: rgb(91, 183, 68);
+}
+
 a:link {
     text-decoration: none;
-    color: green;
+    color: rgb(91, 183, 68);
 }
+
