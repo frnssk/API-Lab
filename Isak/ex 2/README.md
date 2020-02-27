@@ -9,3 +9,5 @@ Code created by the Sketch.js team:
 https://soulwire.github.io/sketch.js/
 
 
+##Credits
+Created by Justin Windle, edited by Isak Eklund

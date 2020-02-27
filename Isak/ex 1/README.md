@@ -10,4 +10,7 @@ Open the index.html file is a browser of choice to be able to use the applicatio
 Code created by the Sketch.js team:
 https://soulwire.github.io/sketch.js/
 
+##Credits
+Created by Justin Windle, edited by Isak Eklund
+
 
