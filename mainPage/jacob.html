@@ -32,20 +32,30 @@
     velocityY: 0,
     height: 50,
     width: 50,
-    step: 20
-   
+    step: 2,
+    isRightPressed: false,
+    isLeftPressed: false,
+    maxVelocity: 10,
+    minVelocity: -10,
+    velocityX: 0
   };
-
 
   //eventlistener to control the blob
   document.addEventListener("keydown", function(event) {
-
     if (event.keyCode == 65) {
-      setInterval(moveLeft(), 10);
-    } else if (event.keyCode == 68 ) {
-      setInterval(moveRight(), 10);
-    } else if(event.keyCode == 32 || event.keyCode == 87){
+      moveLeft();
+    } else if (event.keyCode == 68) {
+      moveRight();
+    } else if (event.keyCode == 32 || event.keyCode == 87) {
       blobJump();
+    }
+  });
+
+  document.addEventListener("keyup", function(event) {
+    if (event.keyCode == 65) {
+      blob.isLeftPressed = false;
+    } else if (event.keyCode == 68) {
+      blob.isRightPressed = false;
     }
   });
 
@@ -56,42 +66,57 @@
     } else if (blob.posX < 0) {
       blob.posX = 0;
     } else {
-      blob.posX += blob.step;
+      blob.isRightPressed = true;
     }
   }
 
   function moveLeft() {
     if (blob.posX > ctx.width - 50) {
-      blob.posX = (ctx.width - 50);
+      blob.posX = ctx.width - 50;
     } else if (blob.posX < 0) {
       blob.posX = 10;
     } else {
-      blob.posX -= blob.step;
+      blob.isLeftPressed = true;
     }
   }
   //Gives blob legs
-  function blobJump(){
-    if (blob.posY == (ctx.height- 250)){
-    blob.velocityY += 30;
-    }  
+  function blobJump() {
+    if (blob.posY == ctx.height - 250) {
+      blob.velocityY += 30;
+    }
   }
   //function that controls the gravity for Blob
-  function blobGravity(){
-    if (blob.posY < (ctx.height - 250)){
+  function blobGravity() {
+    if (blob.posY < ctx.height - 250) {
       blob.velocityY -= 2;
 
       //Makes sure Blob doesn't get stuck in the ground
-    }else if ( blob.posY > (ctx.height - 250)){
-      blob.posY = (ctx.height - 250)
+    } else if (blob.posY > ctx.height - 250) {
+      blob.posY = ctx.height - 250;
       blob.velocityY = 0;
-      
+    }
+  }
+  //For smooth movement
+  function blobMovementHandler() {
+    blob.posX += blob.velocityX;
+
+    if (blob.isRightPressed === true && blob.velocityX < blob.maxVelocity) {
+      blob.velocityX += blob.step;
+    } else if (
+      blob.isLeftPressed === true &&
+      blob.velocityX > blob.minVelocity
+    ) {
+      blob.velocityX -= blob.step;
+    } else if (blob.velocityX > 0) {
+      blob.velocityX--;
+    } else if (blob.velocityX < 0) {
+      blob.velocityX++;
     }
   }
   //Moves blob higher
-  function blobJumpHandler(){
+  function blobJumpHandler() {
     blob.posY -= blob.velocityY;
   }
-
 
   //Creates the dot object with some inherent properties
   Dot = function() {
@@ -170,18 +195,18 @@
     for (var i = 0; i < dots.length; i++) {
       dots[i].draw();
     }
-      //draws ground
-      ctx.fillStyle = "#11253D";
-      ctx.fillRect(0, ctx.height - 200, ctx.width, ctx.height);
+    //draws ground
+    ctx.fillStyle = "#11253D";
+    ctx.fillRect(0, ctx.height - 200, ctx.width, ctx.height);
 
-      //draws blob
-      ctx.fillStyle = "#6688B3";
-      ctx.fillRect(blob.posX, blob.posY, blob.width, blob.height);
-    
+    //draws blob
+    ctx.fillStyle = "#6688B3";
+    ctx.fillRect(blob.posX, blob.posY, blob.width, blob.height);
+
     //Gravity for Blob
     blobGravity();
     blobJumpHandler();
-
+    blobMovementHandler();
   };
   //"teleports" the dots that hit the ground up to the top again
   ctx.makeDot = function(reuseDot) {
@@ -190,7 +215,6 @@
     dots.push(dot);
   };
 })();
-
 
     </script>
   </body>

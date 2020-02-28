@@ -12,7 +12,7 @@ The example is based on a codepen project made by Brian Montana
 https://codepen.io/brianmontanaweb/details/YXRzNG
 
 The example is using the sketch.js library which was created by the following GitHub users:
-## Soulwire
+## Justin Windle
 https://github.com/soulwire
 
 ## Jérôme Steunou

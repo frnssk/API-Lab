@@ -13,7 +13,7 @@ The example is based on a codepen project made by Nate Wiley
 https://codepen.io/natewiley/pen/rADvF
 
 The example is using the sketch.js library which was created by the following GitHub users:
-## Soulwire
+## Justin Windle
 https://github.com/soulwire
 
 ## Jérôme Steunou
