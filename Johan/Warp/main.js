@@ -1,9 +1,9 @@
-// Setup the document style
+// Setup the style of the document and made cursor visable
 document.body.style.background = "black";
 document.body.style.overflow = "hidden";
 document.body.style.cursor = "default";
 
-// Creates and returns a new sketch.
+// Sets ups a new sketch and assigns it to an variable
 const s = Sketch.create({ autoclear: false });
 // Array that stores all the created squares
 const squares = [];
@@ -13,7 +13,7 @@ let minHue = 50;
 let maxHue = 500;
 let hue = minHue;
 
-// Assign the random x and y value to the variable
+// Assign a random x and y value to the variable based on the width and height of the sketch
 let point = {
   x: random(0, s.width),
   y: random(0, s.height)
@@ -38,6 +38,7 @@ s.draw = function() {
   squares.forEach(sq => sq.draw());
   this.strokeStyle = `hsla(${this.hue}, 100%, 50%, ${this.a})`;
 
+  // Changes the color of the squares
   hue = hue > maxHue ? minHue : hue + 0.8;
 };
 
@@ -78,9 +79,10 @@ class Square {
       s.mouse.y >= this.y &&
       s.mouse.y <= this.y + 10
     ) {
-      // Deletes the squares
+      // Deletes the squares from the array and thus the squares will disappear
       squares.length = 0;
     }
+    // Updates the size of the squares thus creates the effect
     this.size += this.sv;
     this.sv *= 1.05;
     this.a += 0.01;
