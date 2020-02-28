@@ -52,27 +52,27 @@ Boid.prototype = {
     this.alive = true;
     this.health = 1;
     this.maturity = 4;
-    this.speed = 6;
+    this.speed = 20;
     this.size = 5;
-    this.hungerLimit = 12000;
-    this.hunger = 0;
+    //this.hungerLimit = 12000;
+    this.hunger = 1;
     this.isFull = false;
-    this.digestTime = 400;
+    //this.digestTime = 400;
     this.color =
       "rgb(" +
       ~~random(0, 100) +
       "," +
       ~~random(50, 220) +
       "," +
-      ~~random(50, 220) +
+      ~~random(100, 220) +
       ")";
 
     //brains
     this.eyesight = 100; //range for object dectection
-    this.personalSpace = 20; //distance to avoid safe objects
-    this.flightDistance = 60; //distance to avoid scary objects
+    this.personalSpace = 5; //distance to avoid safe objects
+    this.flightDistance = 80; //distance to avoid scary objects
     this.flockDistance = 100; //factor that determines how attracted the boid is to the center of the flock
-    this.matchVelFactor = 6; //factor that determines how much the flock velocity affects the boid. less = more matching
+    this.matchVelFactor = 8; //factor that determines how much the flock velocity affects the boid. less = more matching
 
     this.x = x || 0.0;
     this.y = y || 0.0;
@@ -93,7 +93,7 @@ Boid.prototype = {
     this.unitV.y = this.v.y / this.v.mag;
   },
   wallAvoid: function(ctx) {
-    var wallPad = 10;
+    var wallPad = 20;
     if (this.x < wallPad) {
       this.v.x = this.speed;
     } else if (this.x > ctx.width - wallPad) {
@@ -219,21 +219,6 @@ Boid.prototype = {
       this.hunger += this.v.mag;
     }
   },
-  eat: function(other) {
-    if (!this.isFull) {
-      if (other.type === "plant") {
-        other.health--;
-        this.health++;
-        this.isFull = true;
-        this.hunger = 0;
-      }
-    }
-  },
-  handleOther: function(other) {
-    if (other.type === "predator") {
-      this.avoidOrAttract("avoid", other);
-    }
-  },
   metabolism: function() {
     if (this.hunger >= this.hungerLimit) {
       this.health--;
@@ -293,135 +278,6 @@ Boid.prototype = {
   }
 };
 
-Predator.prototype = new Boid();
-Predator.prototype.constructor = Predator;
-Predator.constructor = Boid.prototype.constructor;
-
-function Predator(x, y) {
-  this.init(x, y);
-
-  this.type = "predator";
-
-  //body
-  this.maturity = 6;
-  this.speed = 6;
-  this.hungerLimit = 25000;
-  this.color =
-    "rgb(" +
-    ~~random(100, 250) +
-    "," +
-    ~~random(10, 30) +
-    "," +
-    ~~random(10, 30) +
-    ")";
-
-  //brains
-  this.eyesight = 150;
-  this.flockDistance = 300;
-}
-
-Predator.prototype.eat = function(other) {
-  if (!this.isFull) {
-    if (other.type === "boid") {
-      other.health--;
-      this.health++;
-      this.isFull = true;
-      this.hunger = 0;
-    }
-  }
-};
-
-Predator.prototype.handleOther = function(other) {
-  if (other.type === "boid") {
-    if (!this.isFull) {
-      this.avoidOrAttract("attract", other);
-    }
-  }
-};
-
-Predator.prototype.mitosis = function(boids) {
-  if (this.health >= this.maturity) {
-    //reset old boid
-    this.health = 1;
-
-    birthedBoid = new Predator(
-      this.x + random(-this.personalSpace, this.personalSpace),
-      this.y + random(-this.personalSpace, this.personalSpace)
-    );
-    birthedBoid.color = this.color;
-
-    boids.push(birthedBoid);
-  }
-};
-
-Plant.prototype = new Boid();
-Plant.prototype.constructor = Plant;
-Plant.constructor = Boid.prototype.constructor;
-
-function Plant(x, y) {
-  this.init(x, y);
-
-  this.type = "plant";
-
-  //body
-  this.speed = 0;
-  this.size = 10;
-  this.health = ~~random(1, 10);
-  this.color =
-    "rgb(" +
-    ~~random(130, 210) +
-    "," +
-    ~~random(40, 140) +
-    "," +
-    ~~random(160, 220) +
-    ")";
-
-  //brains
-  this.eyesight = 0;
-  this.flockDistance = 0;
-  this.eyesight = 0; //range for object dectection
-  this.personalSpace = 100; //distance to avoid safe objects
-  this.flightDistance = 0; //distance to avoid scary objects
-  this.flockDistance = 0; //factor that determines how attracted the boid is to the center of the flock
-  this.matchVelFactor = 0; //factor that determines how much the flock velocity affects the boid
-}
-
-Plant.prototype.ai = function(boids, index, ctx) {};
-
-Plant.prototype.move = function() {};
-
-Plant.prototype.mitosis = function(boids) {
-  var growProbability = 1,
-    maxPlants = 40,
-    plantCount = 0;
-
-  for (m = boids.length - 1; m >= 0; m--) {
-    if (boids[m].type === "plant") {
-      plantCount++;
-    }
-  }
-
-  if (plantCount <= maxPlants) {
-    if (random(0, 100) <= growProbability) {
-      birthedBoid = new Plant(
-        this.x + random(-this.personalSpace, this.personalSpace),
-        this.y + random(-this.personalSpace, this.personalSpace)
-      );
-      birthedBoid.color = this.color;
-
-      boids.push(birthedBoid);
-    }
-  }
-};
-
-Plant.prototype.draw = function(ctx) {
-  var drawSize = this.size + this.health;
-  ctx.fillStyle = this.color;
-  ctx.shadowBlur = 40;
-  ctx.shadowColor = this.color;
-  ctx.fillRect(this.x - drawSize, this.y + drawSize, drawSize, drawSize);
-};
-
 /***********************
 SIM
 ***********************/
@@ -440,30 +296,7 @@ sim.setup = function() {
 };
 
 sim.spawn = function(x, y) {
-  var predatorProbability = 0.1,
-    plantProbability = 0.3;
-
-  switch (
-    getRandomItem(
-      ["boid", "predator", "plant"],
-      [
-        1 - predatorProbability - plantProbability,
-        predatorProbability,
-        plantProbability
-      ]
-    )
-  ) {
-    case "predator":
-      boid = new Predator(x, y);
-      break;
-    case "plant":
-      boid = new Plant(x, y);
-      break;
-    default:
-      boid = new Boid(x, y);
-      break;
-  }
-
+  boid = new Boid(x, y);
   boids.push(boid);
 };
 
@@ -488,5 +321,5 @@ sim.draw = function() {
     boids[i].draw(sim);
   }
 
-  sim.fillText(boids.length, 20, 20);
+  sim.fillText(boids.length, 40, 40);
 };

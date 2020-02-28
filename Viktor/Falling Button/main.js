@@ -15,6 +15,7 @@ var ctx = Sketch.create({
   }
 });
 
+/*Event that listen for mouse clicks*/
 document.addEventListener("click", buttonClick);
 
 /* A function that runs the entire animation of the button falling when the button is clicked*/ 
@@ -44,26 +45,32 @@ if (e.clientX > 110 && e.clientX < 410 && e.clientY > 20 && e.clientY < 120) {
   
   Box.prototype = new Vector2;
   
+  /*Creates a function that sets the parameters of how the box should fall, speed, position, direction*/
   Box.prototype.update = function() {
     this.velocityY += 0.4;
     this.setPosition(this.x + this.velocityX, this.y + this.velocityY);
     };
   
+  /*Draws the falling box*/
   Box.prototype.draw = function() {
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.width, this.height);
     };
   
+  /*Setup for creating the falling animation*/
   ctx.setup = function () {
-    this.player = new Box({x: 100, y: 10, width: 300, height: 100});
+    this.player = new Box();
     };
+  
   
   ctx.update = function() {
     this.player.update();
     };
   
+  /*Continues to draw the box while falling*/
   ctx.draw = function(){
     this.player.draw();
-  }; 
+    }; 
+
   };
 };

@@ -1,19 +1,20 @@
-// Setup the document style
+// Setup the style of the document
 document.body.style.background = "black";
 document.body.style.overflow = "hidden";
 document.body.style.cursor = "default";
 
-// Creates and returns a new sketch.
+// Setup a new sketch and assigns it to an variable
 const s = Sketch.create({ autoclear: false });
 // Array that stores all the created squares
 const squares = [];
+// Set the max amount of squares that will be drawn
 const maxSquares = 20;
-// Sets the color range
+// Sets the color range of the squares
 let minHue = 50;
 let maxHue = 500;
 let hue = minHue;
 
-// Assign the random x and y value to the variable
+// Assign a random x and y value to the variable based on the width and height of the sketch
 let point = {
   x: random(0, s.width),
   y: random(0, s.height)
@@ -38,6 +39,7 @@ s.draw = function() {
   squares.forEach(sq => sq.draw());
   this.strokeStyle = `hsla(${this.hue}, 100%, 50%, ${this.a})`;
 
+  // Changes the color of the squares based on the color range
   hue = hue > maxHue ? minHue : hue + 0.8;
 };
 
@@ -56,7 +58,7 @@ class Square {
     this.hue = hue;
   }
 
-  // Method that draws the square when called upon
+  // Method that draws the squares
   draw() {
     s.globalCompositeOperation = "lighter";
     s.lineWidth = 2;
@@ -69,7 +71,8 @@ class Square {
     );
     this.update();
   }
-  // Method that updates the square with new values
+
+  // Method that updates the squares, array and checks the mouse position
   update() {
     // Checks if mouse is over squares and if condition is true, the array gets empty
     if (
@@ -78,9 +81,10 @@ class Square {
       s.mouse.y >= this.y &&
       s.mouse.y <= this.y + 10
     ) {
-      // Deletes the squares
+      // By reassigning the length of the array to 0, it will empty the array thus delete the squares
       squares.length = 0;
     }
+    // Updates the size of the squares thus creates the effect
     this.size += this.sv;
     this.sv *= 1.05;
     this.a += 0.01;

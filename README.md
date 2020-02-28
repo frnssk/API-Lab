@@ -1,15 +1,18 @@
-Start the program by opening the index.html file.
+# API-Lab Project Group 9
+This repository is the API-lab group work of group 9 of the first year interaction design class at Malmö university. In this project, we explored the different capabilities of the Sketch.js JavaScript library and how it might benefit when an interaction designer is working with implementation prototyping.
 
-This is a simple program created in sketch.js created by Justin Windle: https://github.com/soulwire/sketch.js, a creative coding framework.
+The project is useful for fast vector-based animation/gaming prototypes and the API uses a simple loop to create animations.
 
-In the original example, the user gets to play around with particles that stem from the cursor. In my example, the user gets to decide when to spawn particles using the mouse. Try to have some fun and mess around with this program using the mouse!
+The user can either download the API from their GitHub:
+https://soulwire.github.io/sketch.js/
+Or use a CDN.
+
+By opening the mainPage/index.html you can see and test all the different examples that were presented. 
 
 
 # contributors
-The example is based on a codepen project made by Nate Wiley
-https://codepen.io/natewiley/pen/yYBxey
 
-The example is using the sketch.js library which was created by the following GitHub users:
+The examples are using the sketch.js library which was created by the following GitHub users:
 ## Justin Windle
 https://github.com/soulwire
 

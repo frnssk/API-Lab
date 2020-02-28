@@ -1,19 +1,19 @@
-# Blob Colour cascade
+#Untitled
 
-This is a simple program that will create an array of dots that are falling from the top of the screen to the bottom. In the program there are several settings that can be played with the alter the behaviour of the dots. 
+An application that draws different coloured circles that reacts to the movement of the mouse.
 
-This Example shows how sketch.js's particle handling cane be used to create an environment that, in this case, is used in a very basic game. 
-The example is used as an implementation prototype. By implementing the particles falling into the game you could easily make Blob interact with the raindrops, or have the raindrops interact with the environment. 
+##Running
 
-To start the program, open index.html in your browser of choice. 
-You can control Blob with W, A, S & D on your keyboard. 
+Open the index.html in your preferred browser to use the application.
+The code is created by the sketch.js team:
+https://soulwire.github.io/sketch.js/
 
-# contributors
-The example is based on a codepen project made by Nate Wiley
-https://codepen.io/natewiley/pen/rADvF
+##Credits
+
+Created by Victor Alveflo https://codepen.io/victoralveflo/details/otyHp.
 
 The example is using the sketch.js library which was created by the following GitHub users:
-## Justin Windle
+## Soulwire
 https://github.com/soulwire
 
 ## Jérôme Steunou
@@ -48,6 +48,8 @@ https://github.com/ddsol
 
 ## Jason A. Storey
 https://github.com/JasonStorey
+
+
 
 # The API-Lab group 9 Members
 
