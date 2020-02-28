@@ -1,14 +1,14 @@
 
-In the original example, the user can play a game costisting of 
+In the original example, the user can play a game consisting of 
 left moving platforms and a box that jumps when one of the 
-assigned keyboard keys or left mousebutton is pressed. 
+assigned keyboard keys or left mouse button is pressed. 
 In this example the user can press a button which then falls using 
 the same animation as the box in the original.
 
 To start the program open the index.html file in your browser.
 
 # contributors
-The example is based on a codepen project made by Eduardo Lopes: https://codepen.io/EduardoLopes/pen/IJnAr
+The example is based on a 'codepen' project made by Eduardo Lopes: https://codepen.io/EduardoLopes/pen/IJnAr
 
 
 The example is using the sketch.js library which was created by the following GitHub users:
