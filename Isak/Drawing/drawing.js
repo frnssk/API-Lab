@@ -1,6 +1,7 @@
 var colors = ['#E3EB64', '#A7EBCA', '#FFFFFF', '#D8EBA7', '#868E80' ];
 var radius = 0;
 
+//Creating sketch object
 Sketch.create({
 
     container: document.getElementById( 'container' ),
@@ -21,6 +22,7 @@ Sketch.create({
         if ( this.keys.C ) this.clear();
     },
 
+    //Function for reconizing touch and drawing
     touchmove: function() {
 
         for ( var i = this.touches.length - 1, touch; i >= 0; i--){
